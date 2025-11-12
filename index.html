@@ -1,0 +1,165 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  sendOtp,
+  verifyOtp,
+  getCurrentSession,
+  getCurrentAuthUser,
+  getUserProfileByUuid,
+  createUserProfile,
+  updateUserProfileByUuid,
+  logout as supaLogout,
+} from '../services/userService'; // Path sahi rakhna!
+
+// --- Context type and initial ---
+const AuthContext = createContext({
+  authUser: null,
+  loading: true,
+  loginWithOtp: async () => {},
+  verifyOtpAndLogin: async () => {},
+  logout: async () => {},
+  refreshProfile: async () => {}, // <-- ADD refresh method!
+  updateProfile: async () => {}, // <-- ADD update method!
+});
+
+// --- Provider ---
+export const AuthProvider = ({ children }) => {
+  const [authUser, setAuthUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Context profile refresh utility (reusable)
+  const refreshProfile = async () => {
+    setLoading(true);
+    try {
+      // Check token from AsyncStorage
+      const token = await AsyncStorage.getItem('user_jwt');
+      if (!token) {
+        setAuthUser(null);
+        setLoading(false);
+        return;
+      }
+
+      const user = await getCurrentAuthUser();
+
+      if (user?.id || user?.uuid) {
+        let profile = await getUserProfileByUuid(user?.id || user?.uuid);
+
+        if (!profile) {
+          console.log('Calling createUserProfile...');
+          profile = await createUserProfile({
+            uuid: user?.id || user?.uuid,
+            phone: user?.phone,
+          });
+          console.log('Profile after insert:', profile);
+        }
+        setAuthUser(profile);
+      } else {
+        setAuthUser(null);
+      }
+    } catch (e) {
+      console.log('refreshProfile error:', e);
+      setAuthUser(null);
+    }
+    setLoading(false);
+  };
+
+  // On mount, session check & context set
+  useEffect(() => {
+    const fetchSession = async () => {
+      setLoading(true);
+      try {
+        // Step 1: Check token from AsyncStorage
+        const token = await AsyncStorage.getItem('user_jwt');
+
+        if (token) {
+          // Optionally validate token if needed here
+          await refreshProfile();
+        } else {
+          // If no token, fallback to backend session check (extra safe)
+          const session = await getCurrentSession();
+
+          if (session?.user && session?.access_token) {
+            // Store token to AsyncStorage
+            await AsyncStorage.setItem('user_jwt', session.access_token);
+            await refreshProfile();
+          } else {
+            setAuthUser(null);
+          }
+        }
+      } catch (e) {
+        setAuthUser(null);
+      }
+      setLoading(false);
+    };
+    fetchSession();
+  }, []);
+
+  // OTP send
+  const loginWithOtp = async phone => {
+    await sendOtp(phone);
+  };
+
+  // OTP verify and login - sets context and saves token
+  const verifyOtpAndLogin = async (phone, otp) => {
+    setLoading(true);
+    try {
+      const session = await verifyOtp(phone, otp);
+
+      if (session?.access_token) {
+        await AsyncStorage.setItem('user_jwt', session.access_token);
+      }
+
+      if (session?.user) {
+        await refreshProfile(); // <-- This creates user row agar na mile
+        setLoading(false);
+        return true;
+      }
+    } catch (err) {
+      setAuthUser(null);
+    }
+    setLoading(false);
+    return null;
+  };
+
+  // Profile update with context sync
+  const updateProfile = async (updatedFields = {}) => {
+    setLoading(true);
+    try {
+      const user = await getCurrentAuthUser();
+      if (user?.id || user?.uuid) {
+        await updateUserProfileByUuid(user?.id || user?.uuid, updatedFields);
+        let newProfile = await getUserProfileByUuid(user?.id || user?.uuid);
+        setAuthUser(newProfile);
+        setLoading(false);
+        return newProfile;
+      }
+    } catch (err) {
+      setLoading(false);
+    }
+    return null;
+  };
+
+  // Logout flow - removes token from AsyncStorage
+  const logout = async () => {
+    await supaLogout();
+    await AsyncStorage.removeItem('user_jwt');
+    setAuthUser(null);
+    setLoading(false);
+  };
+
+  // Context value
+  const value = {
+    authUser,
+    loading,
+    loginWithOtp,
+    verifyOtpAndLogin,
+    logout,
+    refreshProfile,
+    updateProfile,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+// Custom hook
+export const useAuth = () => useContext(AuthContext);
