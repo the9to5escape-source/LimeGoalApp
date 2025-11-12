@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>LimeGoal - Coming Soon</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: radial-gradient(ellipse at top left, #bfff0035 10%, #000000 65%);
-      color: #bfff00;
+      background: radial-gradient(ellipse at top left, #1c1c1c 0%, #000 70%);
+      color: #e7ffe0;
       font-family: 'Montserrat', Arial, sans-serif;
       display: flex;
       flex-direction: column;
@@ -17,137 +17,159 @@
       min-height: 100vh;
       margin: 0;
     }
+
     .card {
-      background: rgba(10, 10, 10, 0.96);
+      background: rgba(15, 15, 15, 0.95);
       border-radius: 28px;
-      box-shadow: 0 8px 36px 0 #0f0f0f88, 0 2px 16px 0 #bfff0012;
-      padding: 44px 32px 32px 32px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65);
+      padding: 48px 40px 40px;
       min-width: 320px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      backdrop-filter: blur(1.5px);
-      border: 2px solid #222;
+      border: 1px solid #2a2a2a;
+      backdrop-filter: blur(4px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.8);
+    }
+
     .logo-img {
-      width: 92px;
-      height: 92px;
-      margin-bottom: 22px;
+      width: 88px;
+      height: 88px;
+      margin-bottom: 20px;
       border-radius: 50%;
       object-fit: contain;
       background: #191919;
       border: 3px solid #bfff00;
-      box-shadow: 0 2px 18px 0 #bfff0022, 0 1px 8px #222;
-      transition: box-shadow 0.4s;
-      animation: fadeinDown 1.6s;
+      box-shadow: 0 0 22px #bfff0022;
+      animation: fadeinDown 1.4s;
     }
+
     @keyframes fadeinDown {
-      from { opacity:0; transform: translateY(-24px);}
-      to { opacity:1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
     .logo {
-      font-size: 2.35rem;
-      font-weight: bold;
+      font-size: 2.3rem;
+      font-weight: 700;
       color: #bfff00;
       letter-spacing: 2.5px;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 18px #198a1022, 0 0px 32px #bfff0015;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 18px rgba(191,255,0,0.15);
       user-select: none;
     }
+
     .tagline {
-      font-size: 1.08rem;
-      color: #eaffdf;
-      opacity: .9;
-      margin-bottom: 16px;
-      font-weight: 500;
-      letter-spacing: 1px;
-    }
-    .soon {
-      font-size: 1.55rem;
-      margin-bottom: 14px;
-      font-weight: 500;
-      color: #bfff00;
-      animation: glow 2.2s infinite alternate;
-      letter-spacing: 1px;
-    }
-    @keyframes glow {
-      from {text-shadow: 0 0px 12px #bfff0066, 0 2px 32px #000;}
-      to   {text-shadow: 0 0px 36px #bfff00cc, 0 2px 48px #1abc0099;}
-    }
-    .msg {
-      color: #fff;
-      font-size: 1.13rem;
+      font-size: 1.05rem;
+      color: #ffffffd9;
       margin-bottom: 18px;
-      text-align: center;
-      letter-spacing: 0.7px;
-      max-width: 340px;
-      line-height: 1.5;
+      font-weight: 400;
+      letter-spacing: 0.8px;
     }
+
+    .soon {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #bfff00;
+      margin-bottom: 16px;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 10px rgba(191,255,0,0.2); }
+      100% { text-shadow: 0 0 30px rgba(191,255,0,0.7); }
+    }
+
+    .msg {
+      color: #f1f1f1;
+      font-size: 1.05rem;
+      text-align: center;
+      letter-spacing: 0.6px;
+      max-width: 360px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
     .email {
-      background: linear-gradient(90deg,#bfff00 60%,#72ff2a 100%);
+      background: linear-gradient(90deg,#bfff00 0%,#72ff2a 100%);
       color: #111;
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       margin-bottom: 15px;
       font-weight: 600;
-      padding: 9px 22px;
+      padding: 10px 26px;
       border-radius: 14px;
-      box-shadow: 0 2px 14px #bfff0040;
-      display: inline-block;
-      transition: background 0.18s,color 0.18s,box-shadow 0.2s;
+      box-shadow: 0 2px 14px rgba(191,255,0,0.35);
       text-decoration: none;
-      border: none;
-      outline: none;
-      letter-spacing: .5px;
+      transition: all 0.25s ease;
+      letter-spacing: 0.5px;
     }
-    .email:hover, .email:focus {
-      background: linear-gradient(90deg,#72ff2a 40%,#bfff00 100%);
-      color: #121212;
-      box-shadow: 0 4px 30px #bfff0088;
-      cursor: pointer;
+
+    .email:hover {
+      background: linear-gradient(90deg,#72ff2a 0%,#bfff00 100%);
+      color: #000;
+      box-shadow: 0 4px 28px rgba(191,255,0,0.65);
     }
+
     .socials {
-      margin-top: 12px;
+      margin-top: 14px;
       display: flex;
-      gap: 19px;
+      gap: 20px;
       justify-content: center;
     }
+
     .socials a {
       color: #bfff00;
-      font-size: 1.53rem;
+      font-size: 1.45rem;
       text-decoration: none;
       transition: color 0.2s, transform 0.25s;
-      filter: drop-shadow(0 3px 6px #bfff0030);
+      filter: drop-shadow(0 2px 5px rgba(191,255,0,0.2));
     }
+
     .socials a:hover {
       color: #72ff2a;
-      transform: scale(1.22) rotate(-8deg);
+      transform: scale(1.15);
     }
-    @media (max-width: 460px){
+
+    footer {
+      position: fixed;
+      bottom: 12px;
+      font-size: 0.85rem;
+      color: #777;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 460px) {
       .card {
-        padding: 22px 7px 22px 7px;
-        min-width: 0;
+        padding: 26px 12px;
       }
-      .logo-img { width: 62px; height: 62px; }
-      .logo { font-size: 1.18rem;}
-      .tagline { font-size: .97rem;}
-      .soon { font-size: 1.08rem;}
-      .msg { font-size: .97rem;}
+      .logo { font-size: 1.6rem; }
+      .soon { font-size: 1rem; }
+      .msg { font-size: 0.95rem; }
+      .email { font-size: 0.95rem; }
     }
   </style>
-  <!-- FontAwesome for Social Icons -->
   <script src="https://kit.fontawesome.com/5fa88c658e.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="card">
     <img class="logo-img" src="logo.png" alt="LimeGoal Logo" />
     <div class="logo">LimeGoal</div>
-    <div class="soon">⚽ Coming Soon! ⚽</div>
-    <div class="msg">Our football scoring app is launching soon.<br>Stay tuned for updates!</div>
+    <div class="tagline">Built for Football Fans</div>
+    <div class="soon">⚽ Coming Soon ⚽</div>
+    <div class="msg">Our football scoring app is almost ready.<br>Stay tuned for match-day magic!</div>
     <a class="email" href="mailto:contact@limegoal.com">✉️ contact@limegoal.com</a>
     <div class="socials">
       <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
     </div>
   </div>
+
+  <footer>© 2025 LimeGoal. All rights reserved.</footer>
 </body>
 </html>
