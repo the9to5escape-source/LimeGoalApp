@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(135deg, #111 75%, #4f731c 100%);
+      background: radial-gradient(ellipse at top left, #bfff0035 10%, #000000 65%);
       color: #bfff00;
       font-family: 'Montserrat', Arial, sans-serif;
       display: flex;
@@ -16,93 +16,122 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      transition: background 1s;
     }
     .card {
-      background: rgba(30,32,30,0.89);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.34);
-      border-radius: 22px;
-      padding: 40px 32px 28px 32px;
+      background: rgba(10, 10, 10, 0.96);
+      border-radius: 28px;
+      box-shadow: 0 8px 36px 0 #0f0f0f88, 0 2px 16px 0 #bfff0012;
+      padding: 44px 32px 32px 32px;
+      min-width: 320px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      backdrop-filter: blur(1.5px);
+      border: 2px solid #222;
     }
     .logo-img {
-      width: 90px;
-      height: 90px;
-      margin-bottom: 20px;
+      width: 92px;
+      height: 92px;
+      margin-bottom: 22px;
       border-radius: 50%;
-      box-shadow: 0 4px 16px #4f731c44;
       object-fit: contain;
-      border: 2px solid #bfff00;
-      background: #242800;
+      background: #191919;
+      border: 3px solid #bfff00;
+      box-shadow: 0 2px 18px 0 #bfff0022, 0 1px 8px #222;
       transition: box-shadow 0.4s;
+      animation: fadeinDown 1.6s;
+    }
+    @keyframes fadeinDown {
+      from { opacity:0; transform: translateY(-24px);}
+      to { opacity:1; transform: translateY(0);}
     }
     .logo {
-      font-size: 2rem;
+      font-size: 2.35rem;
       font-weight: bold;
       color: #bfff00;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       margin-bottom: 10px;
-      text-shadow: 0 2px 14px #000a;
+      text-shadow: 0 2px 18px #198a1022, 0 0px 32px #bfff0015;
+      user-select: none;
+    }
+    .tagline {
+      font-size: 1.08rem;
+      color: #eaffdf;
+      opacity: .9;
+      margin-bottom: 16px;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
     .soon {
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       margin-bottom: 14px;
       font-weight: 500;
-      color: #ffec55;
-      animation: fadein 1.1s;
+      color: #bfff00;
+      animation: glow 2.2s infinite alternate;
+      letter-spacing: 1px;
     }
-    @keyframes fadein {
-      from { opacity: 0; transform: translateY(18px);}
-      to   { opacity: 1; transform: translateY(0);}
+    @keyframes glow {
+      from {text-shadow: 0 0px 12px #bfff0066, 0 2px 32px #000;}
+      to   {text-shadow: 0 0px 36px #bfff00cc, 0 2px 48px #1abc0099;}
     }
     .msg {
       color: #fff;
-      font-size: 1.11rem;
+      font-size: 1.13rem;
       margin-bottom: 18px;
       text-align: center;
       letter-spacing: 0.7px;
       max-width: 340px;
+      line-height: 1.5;
     }
     .email {
-      background: #292929;
-      color: #bfff00;
-      font-size: 1rem;
-      margin-bottom: 12px;
-      font-weight: 500;
-      padding: 7px 18px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px #4f731c29;
+      background: linear-gradient(90deg,#bfff00 60%,#72ff2a 100%);
+      color: #111;
+      font-size: 1.08rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+      padding: 9px 22px;
+      border-radius: 14px;
+      box-shadow: 0 2px 14px #bfff0040;
       display: inline-block;
-      transition: background 0.3s,color 0.3s;
+      transition: background 0.18s,color 0.18s,box-shadow 0.2s;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      letter-spacing: .5px;
     }
     .email:hover, .email:focus {
-      background: #4f731c;
-      color: #fff;
+      background: linear-gradient(90deg,#72ff2a 40%,#bfff00 100%);
+      color: #121212;
+      box-shadow: 0 4px 30px #bfff0088;
       cursor: pointer;
-      outline: none;
     }
     .socials {
-      margin-top: 10px;
+      margin-top: 12px;
       display: flex;
-      gap: 16px;
+      gap: 19px;
+      justify-content: center;
     }
     .socials a {
       color: #bfff00;
-      font-size: 1.45rem;
+      font-size: 1.53rem;
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.2s, transform 0.25s;
+      filter: drop-shadow(0 3px 6px #bfff0030);
     }
     .socials a:hover {
-      color: #ffec55;
+      color: #72ff2a;
+      transform: scale(1.22) rotate(-8deg);
     }
     @media (max-width: 460px){
       .card {
-        padding: 26px 9px;
+        padding: 22px 7px 22px 7px;
+        min-width: 0;
       }
-      .soon, .logo { font-size: 1.13rem;}
-      .logo-img { width: 60px; height: 60px;}
+      .logo-img { width: 62px; height: 62px; }
+      .logo { font-size: 1.18rem;}
+      .tagline { font-size: .97rem;}
+      .soon { font-size: 1.08rem;}
+      .msg { font-size: .97rem;}
     }
   </style>
   <!-- FontAwesome for Social Icons -->
@@ -110,12 +139,11 @@
 </head>
 <body>
   <div class="card">
-    <!-- Custom Logo Image -->
     <img class="logo-img" src="logo.png" alt="LimeGoal Logo" />
     <div class="logo">LimeGoal</div>
     <div class="soon">⚽ Coming Soon! ⚽</div>
     <div class="msg">Our football scoring app is launching soon.<br>Stay tuned for updates!</div>
-    <a class="email" href="mailto:contact@limegoal.com">✉️&nbsp;Contact: contact@limegoal.com</a>
+    <a class="email" href="mailto:contact@limegoal.com">✉️ contact@limegoal.com</a>
     <div class="socials">
       <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
