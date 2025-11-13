@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LimeGoal - Coming Soon</title>
+  <title>LimeGoal | Football Scoring App - Coming Soon</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <!-- SEO meta tag -->
+  <!-- SEO meta tags -->
   <meta name="description" content="LimeGoal - Football scoring app. Coming soon! Stay tuned for match-day magic.">
+  <meta property="og:title" content="LimeGoal - Football Scoring App">
+  <meta property="og:description" content="Track football matches with LimeGoal — coming soon!">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --lime: #bfff00;
+      --lime-light: #72ff2a;
+      --bg-dark: #1c1c1c;
+      --text-light: #f1f1f1;
+    }
+
     body {
-      background: radial-gradient(ellipse at top left, #1c1c1c 0%, #000 70%);
+      background: radial-gradient(ellipse at top left, var(--bg-dark) 0%, #000 70%);
       color: #e7ffe0;
       font-family: 'Montserrat', Arial, sans-serif;
       display: flex;
@@ -18,13 +30,19 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
+      animation: fadeIn 1s ease-in;
     }
 
-    .card {
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    main.card {
       background: rgba(15, 15, 15, 0.95);
       border-radius: 28px;
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65);
-      padding: 48px 40px 40px;
+      padding: 48px 40px 60px;
       min-width: 320px;
       display: flex;
       flex-direction: column;
@@ -32,9 +50,10 @@
       border: 1px solid #2a2a2a;
       backdrop-filter: blur(4px);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      margin-bottom: 40px;
     }
 
-    .card:hover {
+    main.card:hover {
       transform: translateY(-4px);
       box-shadow: 0 10px 36px rgba(0, 0, 0, 0.8);
     }
@@ -46,11 +65,12 @@
       border-radius: 50%;
       object-fit: contain;
       background: #191919;
-      border: 3px solid #bfff00;
+      border: 3px solid var(--lime);
       box-shadow: 0 0 22px #bfff0022;
       animation: fadeinDown 1.4s;
       transition: box-shadow 0.4s;
     }
+
     .logo-img:hover {
       box-shadow: 0 0 32px #bfff0090, 0 2px 32px #242;
     }
@@ -63,7 +83,7 @@
     .logo {
       font-size: 2.3rem;
       font-weight: 700;
-      color: #bfff00;
+      color: var(--lime);
       letter-spacing: 2.5px;
       margin-bottom: 8px;
       text-shadow: 0 2px 18px rgba(191,255,0,0.15);
@@ -76,24 +96,26 @@
       margin-bottom: 18px;
       font-weight: 400;
       letter-spacing: 0.8px;
+      text-align: center;
     }
 
     .soon {
       font-size: 1.3rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: #bfff00;
+      color: var(--lime);
       margin-bottom: 16px;
       animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0% { text-shadow: 0 0 10px rgba(191,255,0,0.2); }
-      100% { text-shadow: 0 0 30px rgba(191,255,0,0.7); }
+      0% { text-shadow: 0 0 10px rgba(191,255,0,0.2); transform: scale(1); }
+      50% { text-shadow: 0 0 30px rgba(191,255,0,0.7); transform: scale(1.05); }
+      100% { text-shadow: 0 0 10px rgba(191,255,0,0.2); transform: scale(1); }
     }
 
     .msg {
-      color: #f1f1f1;
+      color: var(--text-light);
       font-size: 1.05rem;
       text-align: center;
       letter-spacing: 0.6px;
@@ -103,7 +125,7 @@
     }
 
     .email {
-      background: linear-gradient(90deg,#bfff00 0%,#72ff2a 100%);
+      background: linear-gradient(90deg, var(--lime) 0%, var(--lime-light) 100%);
       color: #111;
       font-size: 1.05rem;
       margin-bottom: 15px;
@@ -116,17 +138,15 @@
       letter-spacing: 0.5px;
       border: none;
       outline: none;
+      display: inline-block;
     }
 
     .email:hover, .email:focus {
-      background: linear-gradient(90deg,#72ff2a 0%,#bfff00 100%);
+      background: linear-gradient(90deg, var(--lime-light) 0%, var(--lime) 100%);
       color: #000;
       box-shadow: 0 4px 28px rgba(191,255,0,0.65);
+      transform: translateY(-2px);
       cursor: pointer;
-    }
-
-    .email[aria-label] {
-      /* Accessibility label: no visible effect, just for screen readers */
     }
 
     .socials {
@@ -137,7 +157,7 @@
     }
 
     .socials a {
-      color: #bfff00;
+      color: var(--lime);
       font-size: 1.45rem;
       text-decoration: none;
       transition: color 0.2s, transform 0.25s;
@@ -145,7 +165,7 @@
     }
 
     .socials a:hover {
-      color: #72ff2a;
+      color: var(--lime-light);
       transform: scale(1.15);
     }
 
@@ -161,8 +181,8 @@
     }
 
     @media (max-width: 460px) {
-      .card {
-        padding: 26px 12px;
+      main.card {
+        padding: 26px 14px 50px;
         min-width: unset;
       }
       .logo-img { width: 60px; height: 60px; }
@@ -176,18 +196,31 @@
   <script src="https://kit.fontawesome.com/5fa88c658e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="card">
-    <img class="logo-img" src="logo.png" alt="LimeGoal Logo" />
+  <main class="card">
+    <!-- Logo -->
+    <img class="logo-img" src="logo.png" alt="LimeGoal circular logo" />
+
+    <!-- Brand Name -->
     <div class="logo">LimeGoal</div>
+
+    <!-- Tagline -->
     <div class="tagline">Where Every Kick Matters!</div>
+
+    <!-- Coming Soon Animation -->
     <div class="soon">⚽ Coming Soon ⚽</div>
+
+    <!-- Message -->
     <div class="msg">Our football scoring app is almost ready.<br>Stay tuned for match-day magic!</div>
+
+    <!-- Contact Email -->
     <a class="email" href="mailto:contact@limegoal.com" aria-label="Contact LimeGoal via email">✉️ contact@limegoal.com</a>
+
+    <!-- Social Links -->
     <div class="socials">
       <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
     </div>
-  </div>
+  </main>
 
   <footer>© 2025 LimeGoal. All rights reserved.</footer>
 </body>
