@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>LimeGoal - Coming Soon</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- SEO meta tag -->
+  <meta name="description" content="LimeGoal - Football scoring app. Coming soon! Stay tuned for match-day magic.">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -47,6 +49,10 @@
       border: 3px solid #bfff00;
       box-shadow: 0 0 22px #bfff0022;
       animation: fadeinDown 1.4s;
+      transition: box-shadow 0.4s;
+    }
+    .logo-img:hover {
+      box-shadow: 0 0 32px #bfff0090, 0 2px 32px #242;
     }
 
     @keyframes fadeinDown {
@@ -108,12 +114,19 @@
       text-decoration: none;
       transition: all 0.25s ease;
       letter-spacing: 0.5px;
+      border: none;
+      outline: none;
     }
 
-    .email:hover {
+    .email:hover, .email:focus {
       background: linear-gradient(90deg,#72ff2a 0%,#bfff00 100%);
       color: #000;
       box-shadow: 0 4px 28px rgba(191,255,0,0.65);
+      cursor: pointer;
+    }
+
+    .email[aria-label] {
+      /* Accessibility label: no visible effect, just for screen readers */
     }
 
     .socials {
@@ -142,18 +155,24 @@
       font-size: 0.85rem;
       color: #777;
       letter-spacing: 0.5px;
+      left: 0;
+      right: 0;
+      text-align: center;
     }
 
     @media (max-width: 460px) {
       .card {
         padding: 26px 12px;
+        min-width: unset;
       }
+      .logo-img { width: 60px; height: 60px; }
       .logo { font-size: 1.6rem; }
       .soon { font-size: 1rem; }
       .msg { font-size: 0.95rem; }
       .email { font-size: 0.95rem; }
     }
   </style>
+  <!-- FontAwesome for Social Icons -->
   <script src="https://kit.fontawesome.com/5fa88c658e.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -163,7 +182,7 @@
     <div class="tagline">Where Every Kick Matters!</div>
     <div class="soon">⚽ Coming Soon ⚽</div>
     <div class="msg">Our football scoring app is almost ready.<br>Stay tuned for match-day magic!</div>
-    <a class="email" href="mailto:contact@limegoal.com">✉️ contact@limegoal.com</a>
+    <a class="email" href="mailto:contact@limegoal.com" aria-label="Contact LimeGoal via email">✉️ contact@limegoal.com</a>
     <div class="socials">
       <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
@@ -173,5 +192,3 @@
   <footer>© 2025 LimeGoal. All rights reserved.</footer>
 </body>
 </html>
-
-
