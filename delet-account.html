@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Account & Data | LimeGoalApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 630px; margin: 0 auto; padding: 30px; background: #f9f9f9;}
+    h1 { color: #1e6f41; }
+    .notice { background: #fffbcc; border-left: 5px solid #ffe066; padding: 8px 16px; margin-bottom: 18px; }
+    label { display: block; margin-top: 14px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    button { margin-top: 18px; background: #1e6f41; color: #fff; padding: 11px 34px; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #155c32;}
+    .instructions { font-size: 1.08em; margin-bottom: 16px;}
+    .small { font-size: 0.96em; color: #555; margin-top: 12px;}
+    .contact { margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <h1>Delete Account & Data</h1>
+  
+  <div class="notice">
+    <b>Please fill out this form to request the deletion of your account and all associated data from LimeGoalApp.</b>
+  </div>
+  
+  <div class="instructions">
+    <ul>
+      <li>Account deletion is processed within <b>7 days</b> after verification.</li>
+      <li>Deleted data: Name, phone, email, match history, stats, profile info, etc.</li>
+      <li>No data is retained except if required for legal compliance; in such cases, data is kept for a maximum of 30 days.</li>
+      <li>You can also email <b>support@limegoal.com</b> from your registered mobile/email to request deletion.</li>
+    </ul>
+  </div>
+
+  <form name="delete-request" method="POST" action="mailto:support@limegoal.com" enctype="text/plain">
+    <label for="name">Your Name (as registered):</label>
+    <input type="text" id="name" name="Name" required>
+  
+    <label for="email">Registered Email or Mobile Number:</label>
+    <input type="text" id="email" name="Email/Mobile" required>
+  
+    <label for="reason">Reason for deletion (optional):</label>
+    <textarea id="reason" name="Reason" rows="2"></textarea>
+  
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <div class="small contact">
+    <b>For urgent requests:</b> <br>
+    Email <a href="mailto:support@limegoal.com">contact@limegoal.com</a> or WhatsApp/Text your registered information to <b>+91 9974197210</b>.
+  </div>
+
+  <div class="small" style="margin-top:24px;">
+    <i>LimeGoalApp is committed to privacy and compliance with Google Play policy. Deletion requests are honored promptly.</i>
+  </div>
+</body>
+</html>
