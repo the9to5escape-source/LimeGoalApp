@@ -27,28 +27,34 @@
   <div class="instructions">
     <ul>
       <li>Account deletion is processed within <b>7 days</b> after verification.</li>
-      <li>Deleted data: Name, phone, email, match history, stats, profile info, etc.</li>
+      <li>Deleted data: Name, city, phone, email, match history, stats, profile info, etc.</li>
       <li>No data is retained except if required for legal compliance; in such cases, data is kept for a maximum of 30 days.</li>
-      <li>You can also email <b>support@limegoal.com</b> from your registered mobile/email to request deletion.</li>
+      <li>You can also email <b>contact@limegoal.com</b> from your registered mobile/email to request deletion.</li>
     </ul>
   </div>
 
-  <form name="delete-request" method="POST" action="mailto:support@limegoal.com" enctype="text/plain">
+  <form name="delete-request" method="POST" action="mailto:contact@limegoal.com" enctype="text/plain">
     <label for="name">Your Name (as registered):</label>
     <input type="text" id="name" name="Name" required>
   
-    <label for="email">Registered Email or Mobile Number:</label>
-    <input type="text" id="email" name="Email/Mobile" required>
+    <label for="city">City:</label>
+    <input type="text" id="city" name="City" required>
   
-    <label for="reason">Reason for deletion (optional):</label>
-    <textarea id="reason" name="Reason" rows="2"></textarea>
+    <label for="phone">Registered Phone Number:</label>
+    <input type="text" id="phone" name="Phone" required>
+  
+    <label for="email">Registered Email Address:</label>
+    <input type="email" id="email" name="Email" required>
+  
+    <label for="deletion">Request for account & data deletion:</label>
+    <textarea id="deletion" name="Deletion" required rows="2" placeholder="Type 'Delete my account and all data'"></textarea>
   
     <button type="submit">Submit Request</button>
   </form>
 
   <div class="small contact">
     <b>For urgent requests:</b> <br>
-    Email <a href="mailto:support@limegoal.com">contact@limegoal.com</a> or WhatsApp/Text your registered information to <b>+91 9974197210</b>.
+    Email <a href="mailto:support@limegoal.com">contactt@limegoal.com</a> or WhatsApp/Text your registered information to <b>+91 9974197210</b>.
   </div>
 
   <div class="small" style="margin-top:24px;">
